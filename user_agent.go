@@ -31,6 +31,7 @@ type UserAgent struct {
 	bot          bool
 	mobile       bool
 	undecided    bool
+	tv           bool
 }
 
 // Read from the given string until the given delimiter or the
@@ -125,6 +126,7 @@ func (p *UserAgent) initialize() {
 	p.bot = false
 	p.mobile = false
 	p.undecided = false
+	p.tv = false
 }
 
 // New parses the given User-Agent string and get the resulting UserAgent
@@ -182,6 +184,11 @@ func (p *UserAgent) Bot() bool {
 // Mobile returns true if it's a mobile device, false otherwise.
 func (p *UserAgent) Mobile() bool {
 	return p.mobile
+}
+
+// Tv returns true if it's a mobile device, false otherwise.
+func (p *UserAgent) Tv() bool {
+	return p.tv
 }
 
 // UA returns the original given user agent.

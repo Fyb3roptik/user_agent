@@ -249,6 +249,8 @@ func getPlatform(comment []string) string {
 				return "webOS"
 			} else if comment[0] == "BB10" {
 				return "BlackBerry"
+			} else if strings.HasPrefix(comment[0], "Roku") {
+				return "Roku"
 			}
 			return comment[0]
 		}
@@ -289,6 +291,10 @@ func (p *UserAgent) detectOS(s section) {
 		p.mobile = true
 		p.browser.Name = "OkHttp"
 		p.browser.Version = s.version
+	} else if s.name == "Roku" {
+		p.tv = true
+		p.browser.Name = "Roku"
+		p.os = "Roku OS"
 	} else {
 		// Check whether this is a bot or just a weird browser.
 		p.undecided = true
