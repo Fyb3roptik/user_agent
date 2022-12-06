@@ -8,6 +8,7 @@ import (
 // detectModel some properties of the model from the given section.
 func (p *UserAgent) detectModel(s section) {
 	fmt.Println("SECTION COMMENT: ", s.comment)
+	fmt.Println("PLATFORM: ", p.platform)
 	if !p.mobile {
 		return
 	}
@@ -16,7 +17,7 @@ func (p *UserAgent) detectModel(s section) {
 		return
 	}
 	if p.platform == "Roku" {
-		p.model = s.comment[0]
+		p.model = fmt.Sprintf("%s (%s)", s.comment[0], s.comment[1])
 	}
 	// Android model
 	if s.name == "Mozilla" && p.platform == "Linux" && len(s.comment) > 2 {
