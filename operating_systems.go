@@ -374,9 +374,6 @@ func (p *UserAgent) OSInfo() OSInfo {
 		version = s[1]
 	}
 
-	fmt.Println("NAME: ", name)
-	fmt.Println("VERSION: ", version)
-
 	// Special case for versions that use underscores
 	version = strings.Replace(version, "_", ".", -1)
 
