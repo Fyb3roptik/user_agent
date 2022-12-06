@@ -295,7 +295,7 @@ func (p *UserAgent) detectOS(s section) {
 	} else if s.name == "Roku" {
 		p.tv = true
 		p.browser.Name = "Roku"
-		p.os = "Roku OS"
+		p.os = s.comment[0]
 		p.platform = "Roku"
 	} else {
 		// Check whether this is a bot or just a weird browser.
