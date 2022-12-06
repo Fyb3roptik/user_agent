@@ -6,7 +6,6 @@ package user_agent
 
 import (
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -294,10 +293,9 @@ func (p *UserAgent) detectOS(s section) {
 		p.browser.Name = "OkHttp"
 		p.browser.Version = s.version
 	} else if s.name == "Roku" {
-		log.Println("SECTION: ", s)
 		p.tv = true
 		p.browser.Name = "Roku"
-		p.os = fmt.Sprintf("%sOS/%s", s.name, s.version)
+		p.os = fmt.Sprintf("%sOS", s.name)
 		p.platform = "Roku"
 	} else {
 		// Check whether this is a bot or just a weird browser.
@@ -360,23 +358,20 @@ func (p *UserAgent) OSInfo() OSInfo {
 	os = strings.Replace(os, "CPU", "", 1)
 	os = strings.Trim(os, " ")
 
-	var name string
-	var version string
+	osSplit := strings.Split(os, " ")
+
+	// Special case for x64 edition of Windows
+	if os == "Windows XP x64 Edition" {
+		osSplit = osSplit[:len(osSplit)-2]
+	}
+
+	name, version := osName(osSplit)
 
 	// Special case for names that contain a forward slash version separator.
 	if strings.Contains(name, "/") {
 		s := strings.Split(name, "/")
 		name = s[0]
 		version = s[1]
-	} else {
-		osSplit := strings.Split(os, " ")
-
-		// Special case for x64 edition of Windows
-		if os == "Windows XP x64 Edition" {
-			osSplit = osSplit[:len(osSplit)-2]
-		}
-
-		name, version = osName(osSplit)
 	}
 
 	fmt.Println("NAME: ", name)
