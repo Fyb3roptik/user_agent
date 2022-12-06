@@ -297,7 +297,7 @@ func (p *UserAgent) detectOS(s section) {
 		log.Println("SECTION: ", s)
 		p.tv = true
 		p.browser.Name = "Roku"
-		p.os = s.comment[0]
+		p.os = fmt.Sprintf("%sOS/%s", s.name, s.version)
 		p.platform = "Roku"
 	} else {
 		// Check whether this is a bot or just a weird browser.
