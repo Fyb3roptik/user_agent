@@ -7,7 +7,7 @@ import (
 
 // detectModel some properties of the model from the given section.
 func (p *UserAgent) detectModel(s section) {
-	if !p.mobile {
+	if !p.mobile && !p.tv {
 		return
 	}
 	if p.platform == "iPhone" || p.platform == "iPad" {
