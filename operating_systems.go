@@ -6,6 +6,7 @@ package user_agent
 
 import (
 	"fmt"
+	"log"
 	"strings"
 )
 
@@ -293,6 +294,7 @@ func (p *UserAgent) detectOS(s section) {
 		p.browser.Name = "OkHttp"
 		p.browser.Version = s.version
 	} else if s.name == "Roku" {
+		log.Println("SECTION: ", s)
 		p.tv = true
 		p.browser.Name = "Roku"
 		p.os = s.comment[0]
