@@ -5,6 +5,7 @@
 package user_agent
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -375,6 +376,9 @@ func (p *UserAgent) OSInfo() OSInfo {
 
 		name, version = osName(osSplit)
 	}
+
+	fmt.Println("NAME: ", name)
+	fmt.Println("VERSION: ", version)
 
 	// Special case for versions that use underscores
 	version = strings.Replace(version, "_", ".", -1)
