@@ -8,7 +8,10 @@
 // information that has been extracted from a parsed User Agent string.
 package user_agent
 
-import "strings"
+import (
+	"log"
+	"strings"
+)
 
 // A section contains the name of the product, its version and
 // an optional comment.
@@ -154,7 +157,7 @@ func (p *UserAgent) Parse(ua string) {
 		}
 		sections = append(sections, s)
 	}
-
+	log.Println("SECTIONS 1: ", sections)
 	if len(sections) > 0 {
 		if sections[0].name == "Mozilla" {
 			p.mozilla = sections[0].version
