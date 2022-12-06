@@ -9,7 +9,7 @@
 package user_agent
 
 import (
-	"log"
+	"fmt"
 	"strings"
 )
 
@@ -157,7 +157,7 @@ func (p *UserAgent) Parse(ua string) {
 		}
 		sections = append(sections, s)
 	}
-	log.Println("SECTIONS 1: ", sections)
+	fmt.Println("SECTIONS 1: ", sections)
 	if len(sections) > 0 {
 		if sections[0].name == "Mozilla" {
 			p.mozilla = sections[0].version

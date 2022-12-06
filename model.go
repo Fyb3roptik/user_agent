@@ -1,13 +1,13 @@
 package user_agent
 
 import (
-	"log"
+	"fmt"
 	"strings"
 )
 
 // detectModel some properties of the model from the given section.
 func (p *UserAgent) detectModel(s section) {
-	log.Println("SECTION: ", s)
+	fmt.Println("SECTION: ", s)
 	if !p.mobile {
 		return
 	}
