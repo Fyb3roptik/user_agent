@@ -1,19 +1,20 @@
 package user_agent
 
 import (
-	"log"
 	"strings"
 )
 
 // detectModel some properties of the model from the given section.
 func (p *UserAgent) detectModel(s section) {
-	log.Println("SECTIONS: ", s)
 	if !p.mobile {
 		return
 	}
 	if p.platform == "iPhone" || p.platform == "iPad" {
 		p.model = p.platform
 		return
+	}
+	if p.platform == "Roku" {
+		p.model = s.comment[0]
 	}
 	// Android model
 	if s.name == "Mozilla" && p.platform == "Linux" && len(s.comment) > 2 {
