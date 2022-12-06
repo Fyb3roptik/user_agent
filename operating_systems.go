@@ -357,20 +357,23 @@ func (p *UserAgent) OSInfo() OSInfo {
 	os = strings.Replace(os, "CPU", "", 1)
 	os = strings.Trim(os, " ")
 
-	osSplit := strings.Split(os, " ")
-
-	// Special case for x64 edition of Windows
-	if os == "Windows XP x64 Edition" {
-		osSplit = osSplit[:len(osSplit)-2]
-	}
-
-	name, version := osName(osSplit)
+	var name string
+	var version string
 
 	// Special case for names that contain a forward slash version separator.
 	if strings.Contains(name, "/") {
 		s := strings.Split(name, "/")
 		name = s[0]
 		version = s[1]
+	} else {
+		osSplit := strings.Split(os, " ")
+
+		// Special case for x64 edition of Windows
+		if os == "Windows XP x64 Edition" {
+			osSplit = osSplit[:len(osSplit)-2]
+		}
+
+		name, version = osName(osSplit)
 	}
 
 	// Special case for versions that use underscores
