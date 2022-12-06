@@ -7,7 +7,7 @@ import (
 
 // detectModel some properties of the model from the given section.
 func (p *UserAgent) detectModel(s section) {
-	fmt.Println("SECTION: ", s)
+	fmt.Println("SECTION COMMENT: ", s.comment)
 	if !p.mobile {
 		return
 	}
